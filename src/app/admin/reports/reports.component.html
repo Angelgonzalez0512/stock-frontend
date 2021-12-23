@@ -1,0 +1,36 @@
+<p-card>
+    <div class="w-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="">Reporte</label>
+                    <ng-select name="reporte"  [searchable]="false" [(ngModel)]="report">
+                        <ng-option [value]="'products'">Productos</ng-option>
+                        <ng-option [value]="'activity'">Actividad</ng-option>
+                        <ng-option [value]="'orderfoods'">Orden Alimentos</ng-option>
+                        <ng-option [value]="'user'">Usuario</ng-option>
+                        <ng-option [value]="'stock'">Historial stock</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-2">
+            <ng-container *ngIf="report=='products'">
+                <app-report-product></app-report-product>
+            </ng-container>
+            <ng-container *ngIf="report=='activity'">
+                <app-report-activity></app-report-activity>
+            </ng-container>
+            <ng-container *ngIf="report=='orderfoods'">
+                <app-report-order-foods></app-report-order-foods>
+            </ng-container>
+            <ng-container *ngIf="report=='user'">
+                <app-report-user></app-report-user>
+            </ng-container>
+            <ng-container *ngIf="report=='stock'">
+                <app-report-transaction></app-report-transaction>
+            </ng-container>
+        </div>
+    </div>
+
+</p-card>

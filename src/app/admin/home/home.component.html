@@ -1,0 +1,151 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 p-2">
+            <div class="card card-1">
+                <div class="card-body border-shadow-1">
+                    <div class="w-100 text-card-1"><i class="pi pi-cog fw-bold fs-5"></i> &nbsp; Actividades</div>
+                    <div class="row mt-3">
+                        <div class="col-6 border-right">
+                            <h3 class="w-100 text-center fw-bold">{{targetas.activities.terminadas}}</h3>
+                            <p class="w-100 text-center">Terminadas</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="w-100 text-center fw-bold">{{targetas.activities.desarrollo}}</h3>
+                            <p class="w-100 text-center">Desarrollo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-2">
+            <div class="card card-2">
+                <div class="card-body border-shadow-1">
+                    <div class="w-100 text-card-2"><i class="pi pi-money fw-bold fs-5">S/. </i> Transaciones ({{targetas.transactions.mes}})</div>
+                    <div class="row mt-3">
+                        <div class="col-6 border-right">
+                            <h3 class="w-100 text-center fw-bold">{{targetas.transactions.ingreso}}</h3>
+                            <p class="w-100 text-center">Ingresos</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="w-100 text-center fw-bold">{{targetas.transactions.salida}}</h3>
+                            <p class="w-100 text-center">Salida</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-2">
+            <div class="card card-3">
+                <div class="card-body border-shadow-1">
+
+                    <div class="w-100 text-card-3"><i class="pi pi-users"></i> Usuarios</div>
+                    <div class="row mt-3">
+                        <div class="col-6 border-right">
+                            <h3 class="w-100 text-center fw-bold">{{targetas.users.activos}}</h3>
+                            <p class="w-100 text-center">Activados</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="w-100 text-center fw-bold">{{targetas.users.registrados}}</h3>
+                            <p class="w-100 text-center">Registrados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-2">
+            <div class="card card-4">
+                <div class="card-body border-shadow-1">
+
+                    <div class="w-100 text-card-4"><i class="pi pi-shopping-cart"></i> &nbsp;Solicitud alimentos</div>
+                    <div class="row mt-3">
+                        <div class="col-6 border-right">
+                            <h3 class="w-100 text-center fw-bold">{{targetas.orders.atendidos}}</h3>
+                            <p class="w-100 text-center">Atendidos</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="w-100 text-center fw-bold">{{targetas.orders.pendientes}}</h3>
+                            <p class="w-100 text-center">Pendientes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card border-shadow-1">
+                <div class="card-body">
+                    <ng-container *ngIf="loadingdata" >
+                        
+                        <p-skeleton width="20%" height="1rem"></p-skeleton>
+                        <br>
+                        <p-skeleton width="100%" height="40vh" borderRadius="3px" class="mt-1"></p-skeleton>
+                    </ng-container>
+                    <ng-container *ngIf="!loadingdata">
+                        
+                    <h2 class="fw-bold text-muted fs-5">Monto de transacciones</h2>
+                        <p-chart type="line" [data]="data"></p-chart>
+                    </ng-container>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-shadow-1">
+                <div class="card-body">
+                    
+                    <h2 class="fw-bold text-muted fs-5">Actividades</h2>
+                    <small><p>Actividades recientes</p></small>
+                     
+                        <p-table [value]="activities"  responsiveLayout="scroll">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th class="px-5">
+                                        Actividad
+                                    </th>
+                                    <th >
+                                        Fecha
+                                    </th>
+                                    <th>
+                                        Estado
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                <ng-container *ngIf="loadingdata" >
+                                    <tr>
+                                        <td><p-skeleton width="100%" height="3rem"></p-skeleton></td>
+                                        <td><p-skeleton width="100%" height="3rem"></p-skeleton></td>
+                                        <td><p-skeleton width="100%" height="3rem"></p-skeleton></td>
+                                        <td><p-skeleton width="50%" height="3rem"></p-skeleton></td>
+                                    </tr>
+                                </ng-container>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-activity let-ri="rowIndex">
+                                    <tr>
+                                        <td class="px-5">
+                                            {{activity.nombre}}
+                                        </td>
+                                        <td>{{activity.createdAt|date:"dd/MM/yyyy"}}</td>
+                                        <td class="text-black">
+                                            <span *ngIf="activity.estado=='proceso'" class="p-tag p-tag-primary">Proceso</span>
+                                            <span *ngIf="activity.estado=='terminado'" class="p-tag p-tag-success">Finalizado</span>
+                                            <span *ngIf="activity.estado=='pendiente'" class="p-tag p-tag-warning">Pendiente</span>
+                                       </td>
+                                        <td >
+                                           <button pButton icon="pi pi-search" [routerLink]="['/admin/activities/detail',activity._id]"  pTooltip="Datalle actividad" tooltipPosition="bottom"
+                                                class="p-button-primary" ></button>
+                                        </td>
+                                    </tr>
+                            </ng-template>
+                        </p-table>
+                     
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+</div>

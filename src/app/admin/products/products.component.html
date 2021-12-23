@@ -1,0 +1,92 @@
+<p-card>
+    <div class="d-flex align-items-center justify-content-start mb-4">
+        <h1 class="text-muted">Control de productos</h1>
+    </div>
+    <div class="w-100 d-flex align-items-center justify-content-between mb-2">
+        <div>
+            <button pButton icon="pi pi-plus" [routerLink]="['/admin/products/create']" class="p-button-primary" label="Agregar" tooltipPosition="bottom" pTooltip="Nuevo producto"></button>&nbsp;
+            <button type="button" pButton icon="pi pi-file-excel" class="p-button-success p-mr-2"
+                pTooltip="Descargar excel" (click)="exportExcel()" tooltipPosition="bottom"></button>
+        </div>
+        <div>
+            <button pButton label="" class="p-button" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+            <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" [(ngModel)]="buscar" (input)="dt1.filterGlobal(buscar, 'contains')"
+                    placeholder="Buscar" />
+            </span>
+        </div>
+    </div>
+    <p-table [value]="products" #dt1 responsiveLayout="scroll" dataKey="_id" [rows]="5" [totalRecords]="totalRows"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,25,50]" styleClass="p-datatable-sm" [paginator]="true"
+        currentPageReportTemplate="Mostrando {first} - {last} de {totalRecords} registros"
+        [lazy]="true" (onLazyLoad)="loadProducts($event)">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="codigo">
+                    Codigo
+                    <p-sortIcon field="codigo"></p-sortIcon>
+                </th>
+                <th pSortableColumn="nombre">
+                    Nombre
+                    <p-sortIcon field="nombre"></p-sortIcon>
+                </th>
+                
+                <th pSortableColumn="cantidad">
+                    Cantidad
+                    <p-sortIcon field="cantidad"></p-sortIcon>
+                </th>
+             
+                <th pSortableColumn="precio">
+                    precio
+                    <p-sortIcon field="precio">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="categoria">
+                    Categoria
+                    <p-sortIcon field="categoria">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="estado">
+                    Estado
+                    <p-sortIcon field="estado"></p-sortIcon>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>
+                    {{product.codigo}}
+                </td>
+                <td>
+                    {{product.nombre}}
+                </td>
+                <td>
+                    {{product.cantidad}} {{product.unidad}}
+                </td>
+                <td >
+                    {{product.precio}}
+                </td>
+                <td>
+                    {{product.categoria}}
+                </td>
+                <td class="text-black">
+                    <span *ngIf="product.estado=='activo'" class="p-tag p-tag-success w-75">{{product.estado}}</span>
+                    <span *ngIf="product.estado!='activo'" class="p-tag p-tag-danger w-75" >{{product.estado}}</span>
+                </td>
+                <td>
+                    <button pButton icon="pi pi-eye" pTooltip="Detalles producto" [routerLink]="['/admin/products/detail',product._id]" tooltipPosition="bottom"
+                        class="p-button-rounded p-button-info p-mr-1"></button>&nbsp;
+                    <button pButton icon="pi pi-pencil" pTooltip="Editar producto" [routerLink]="['/admin/products/edit',product._id]" tooltipPosition="bottom"
+                        class="p-button-rounded p-button-success p-mr-1"></button>&nbsp;
+                    <button pButton icon="pi pi-trash" pTooltip="Dar de baja producto" tooltipPosition="bottom"
+                        class="p-button-rounded p-button-icon p-button-warning" (click)="delete(product)"  [disabled]="product.estado!='activo'"  ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-confirmDialog acceptLabel="Si" rejectLabel="No"	 header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    <p-toast></p-toast>
+</p-card>

@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p-card>
+            <form action="" validate (submit)="registrar(product)" #formRegister="ngForm">
+            <div class="w-100">
+                <h3 class="text-muted">Nuevo producto</h3>
+            </div>
+            <hr class="mb-4"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label w-100 mb-2">
+                            Codigo
+                        </label>
+                        <input type="text" name="codigo" required [(ngModel)]="product.codigo" class="form-control mt-2">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label w-100 mb-2">
+                            Nombre
+                        </label>
+                        <input type="text" name="nombre" required [(ngModel)]="product.nombre" class="form-control mt-2">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label w-100 mb-2">
+                            Precio
+                        </label>
+                        <input type="number" name="precio" required [(ngModel)]="product.precio" class="form-control mt-2">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label w-100 mb-2">
+                            Unidad medida
+                        </label>
+                        <ng-select [(ngModel)]="product.unidad" [required]="true" name="unidad" [notFoundText]="'Nose encontraron unidades'"  class="w-100 mt-2">
+                            <ng-option *ngFor="let unidad of unidades"[value]="unidad.unidad">{{unidad.nombre}} - {{unidad.unidad}}</ng-option>
+                         </ng-select>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label mb-2">
+                            Categoria
+                        </label>
+                        <ng-select [(ngModel)]="product.categoria" [required]="true"  name="rol" [notFoundText]="'Nose encontraron categorias'"  class="w-100 mt-2" name="categoria">
+                            <ng-option *ngFor="let category of categories" [value]="category.denominacion">{{category.denominacion}}</ng-option>
+                         </ng-select>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="w-100 d-flex justify-content-end mt-4">
+                <button pButton type="submit" [disabled]="formRegister.invalid" [loading]="loadinregister" class="btn btn-primary" icon="pi pi-save" label="Crear producto"></button>
+            </div>
+        </form>
+        </p-card >
+    </div>
+    <div class="col-md-2"></div>
+    <p-toast></p-toast>
+</div>

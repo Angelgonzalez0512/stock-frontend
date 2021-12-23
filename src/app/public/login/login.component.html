@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form action="" (submit)="login()" [formGroup]="form" autocomplete="off">
+        <div class="card">
+          <div class="card-body border-shadow">
+            <div class="w-100 d-flex justify-content-center mt-4">
+              <p-avatar icon="pi pi-lock" size="large"
+                [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+            </div>
+            <div class="form-group mt-4">
+              <label for="" class="form-control-label fs-095">Usuario</label>
+              <input type="text" name="usuario"  formControlName="correo" id="usuario" class="form-control fs-075 py-2 mt-2">
+              <div *ngIf="form.controls['correo'].invalid && (form.controls['correo'].dirty || form.controls['correo'].touched)"
+              class="alert alert-danger"
+              >
+              <small *ngIf="form.controls['correo'].errors?.required"><code  class="w-100 text-center text-danger">Complete el usuario</code></small>
+              <small *ngIf="form.controls['correo'].errors?.email"><code  class="w-100 text-center text-danger">Correo no valido</code></small>
+              </div>
+           </div>
+            <div class="form-group mt-2">
+
+              <label for="" class="form-control-label fs-095">Contraseña</label>
+              <input type="password" name="usuario" formControlName="password" id="password" class="form-control fs-075 py-2 mt-2">
+              <small *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)"><code  class="w-100 text-center text-danger">Ingrese su contraseña</code></small>
+          
+            </div>
+            <div class="form-group mt-4 mb-4">
+              <button type="submit" pButton label="Iniciar sesion" class="w-100 bg-custom-green" icon="pi pi-lock"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.card-1{
+    border-left: 5px solid #64B5F6;
+}
+.card-2{
+    border-left: 5px solid #7986CB;
+
+}
+.card-3{
+    border-left: 5px solid #4DB6AC;
+}
+.card-4{
+    border-left: 5px solid #4DD0E1;
+
+}
+.text-card-1{
+    color:  #64B5F6;
+}
+.text-card-2{
+    color:  #7986CB;
+
+}
+.text-card-3{
+    color:  #4DB6AC;
+}
+.text-card-4{
+    color:  #4DD0E1;
+
+}
+.border-right{
+    border-right: 1px solid #ccc;
+}

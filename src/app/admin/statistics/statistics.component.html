@@ -1,0 +1,26 @@
+
+       
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mt-3">
+                <p-card>
+                        <h3 class="text-muted mb-2">Pedidos de actividades y alimentos</h3>
+                     <p-chart type="bar" [data]="multiAxisData" [options]="multiAxisOptions"></p-chart>
+                </p-card>
+            </div>
+            <div class="col-md-4 mt-3">
+                <p-card>
+                    <h3 class="text-muted mb-2">Categorias con mas productos</h3>
+                    <p-chart type="pie" [data]="datapie"   [style]="{'width': '40%'}"></p-chart>
+                    <br>
+                </p-card>
+            </div>
+            <div class="col-md-12 mt-3" >
+                <p-card>
+
+                    <h3 class="text-muted mb-2">Entrada y salida de productos</h3>
+                    <p-chart type="bar" [data]="datacombo" [options]="chartOptionscombo"></p-chart>
+                </p-card>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p-card>
+            <form action="">
+            <div class="w-100">
+                <h3 class="text-muted">Detalle usuario</h3>
+            </div>
+            <hr class="mb-4"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group fw-bold">
+                            Nombres
+                        </label>
+                        
+                       <p>{{user.nombres}}</p>    
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group fw-bold">
+                            Apellidos
+                        </label>
+                        
+                       <p>{{user.apellidos}}</p>    
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group fw-bold">
+                            Dni
+                        </label>
+                        
+                       <p>{{user.dni}}</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group fw-bold">
+                            Correo
+                        </label>
+                        
+                       <p>{{user.correo}}</p>
+                    </div>
+                </div>
+             
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group fw-bold">
+                            Rol
+                        </label>
+                        
+                       <p>{{user.rol}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group fw-bold">
+                            Area
+                        </label>
+                       
+                        <p>{{user.area}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group fw-bold">
+                            Cedula
+                        </label>
+                       <p>{{user.cedula}}</p>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group fw-bold">
+                            Estado
+                        </label>
+                    <p>{{user.estado}}</p>
+                      </div>
+                </div>
+            </div>
+            <div class="w-100 d-flex justify-content-end mt-4">
+                <button pButton class="p-button-danger" icon="pi pi-angle-double-left" [routerLink]="['/admin/users']" label="Volver"></button>
+            </div>
+        </form>
+        </p-card >
+    </div>
+    <div class="col-md-2"></div>
+    <p-toast></p-toast>
+</div>

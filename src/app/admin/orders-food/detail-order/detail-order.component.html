@@ -1,0 +1,110 @@
+<p-card>
+    <p-tabView>
+        <p-tabPanel header="Pedido" leftIcon="pi pi-calendar">
+            <div class="container">
+                <form action="" >
+                    <div class="row my-4 ">
+                       
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fw-bold">Fecha</label>
+                            <p class="mt-2">{{order.fecha|date:"dd/MM/yyyy"}}</p>
+
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fw-bold">Area</label>
+                            <p class="mt-2">{{order.area}}</p>
+
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fw-bold">Cedula</label>
+                          <p class="mt-2">{{order.cedula}}</p>
+                        </div>
+                        
+                        <div class="col-md-3 mt-2">
+                            <label for=""  class="form-label fw-bold">Descripcion actividad</label>
+                            <p class="mt-2">{{order.descripcion}}</p>
+                        </div>
+                        
+                    </div>
+                  
+                </form>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Productos" leftIcon="pi pi-users">
+            <div class="container my-2">
+                <div class="row">
+                    <div class="col-md-8">
+                        <table class="table my-4">
+                            <thead class="bg-primary text-white p-4">
+                                <tr>
+                                    <th class="p-2">Producto</th>
+                                    <th>Cantidad</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of order.detalles">
+                                    <td>{{item.producto?.nombre}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div> 
+        </p-tabPanel>
+        <p-tabPanel header="Otros productos" leftIcon="pi pi-tags">
+            <div class="container my-2">
+                <div class="row">
+                    <div class="col-md-8">
+                        <table class="table my-4">
+                            <thead class="bg-primary text-white p-4">
+                                <tr>
+                                    <th class="p-2">Producto</th>
+                                    <th>Cantidad</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of order.otrosproductos">
+                                    <td>{{item.producto}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div> 
+        </p-tabPanel>
+        <p-tabPanel header="Usuario" leftIcon="pi pi-tags">
+            <div class="container my-2">
+                <br>
+                <div class="row">
+                    <div class="col-md-4"> <strong> Nombres</strong></div>
+                    <div class="col-md-8">: &nbsp;{{order.usuario?.nombres}}</div>
+                    <div class="col-md-4"> <strong> Apellidos</strong></div>
+                    
+                    <div class="col-md-8">: &nbsp;{{order.usuario?.apellidos}}</div>
+                    <div class="col-md-4"> <strong> Dni</strong></div>
+                    
+                    <div class="col-md-8">: &nbsp;{{order.usuario?.dni}}</div>
+                    <div class="col-md-4"> <strong> Area</strong></div>
+                    
+                    <div class="col-md-8">: &nbsp;{{order.usuario?.area}}</div>
+                    <div class="col-md-4"> <strong> Cedula</strong></div>
+                    
+                    <div class="col-md-8">: &nbsp;{{order.usuario?.cedula}}</div>
+                    
+                </div>
+    
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+   
+</p-card>
+
+<p-toast></p-toast>

@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p-card>
+            <form action="" >
+            <div class="w-100">
+                <h3 class="text-muted">Detalle producto</h3>
+            </div>
+            <hr class="mb-4"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label mt-3 fw-bold">
+                            Codigo
+                        </label>
+                        <p>{{product.codigo}}</p> </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label mt-3 fw-bold">
+                            Nombre
+                        </label>
+                        <p>{{product.nombre}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label mt-3 fw-bold">
+                            Precio
+                        </label>
+                        <p>{{product.precio}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label mt-3 fw-bold">
+                            Cantidad
+                        </label>
+                        <p>{{product.cantidad}}</p>   
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label mt-3 fw-bold">
+                            Unidad medida
+                        </label>
+                        <p>{{product.unidad}}</p>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label mt-3 fw-bold">
+                            Categoria
+                        </label>
+                        <p>{{product.categoria}}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="form-label mt-3 fw-bold">
+                            Estado
+                        </label>
+                        <p>{{product.estado}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100 d-flex justify-content-end mt-4">
+                <button pButton [routerLink]="['/admin/products']" class="p-button-danger" icon="pi pi-angle-double-left"  label="Volver"></button>
+            </div>
+        </form>
+        </p-card >
+    </div>
+    <div class="col-md-2"></div>
+    <p-toast></p-toast>
+</div>

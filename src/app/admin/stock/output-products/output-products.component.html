@@ -1,0 +1,67 @@
+<div class="container">
+    <p-card>
+        <form action="" validate (submit)="formRegister.valid && registerOutput()" #formRegister="ngForm" >
+        <div class="row">
+            <h1 class="fs-4 text-muted">Registrar salida de productos</h1>
+            <hr>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Producto</label>
+                    <ng-select name="producto" (change)="selectedProduct()" [required]="true" [(ngModel)]="output.productoid" [notFoundText]="'No se encontraron productos'" #producto (search)="searchProduct($event.term)">
+                        <ng-option *ngFor="let product of products"  [value]="product._id">{{product.nombre}}</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="codigo">Codigo</label>
+                    <input type="text" [(ngModel)]="output.codigo" disabled="true" required name="codigo" id="codigo" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" [(ngModel)]="output.cantidad"  required name="cantidad" id="cantidad" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Area</label>
+                    <ng-select name="area"  [required]="true" (change)="selectedArea(areaselected)" [(ngModel)]="areaselected" [notFoundText]="'No se encontraron areas'" >
+                        <ng-option *ngFor="let area of areas"  [value]="area._id">{{area.area}}</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Cedula</label>
+                    <ng-select name="cedula"  [required]="true" [(ngModel)]="output.cedula" [notFoundText]="'No se encontraron cedulas'" >
+                        <ng-option *ngFor="let cedula of cedulas"  [value]="cedula">{{cedula}}</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" name="fecha" id="fecha" required [(ngModel)]="output.fecha" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
+                    <textarea class="form-control" [(ngModel)]="output.descripcion" required name="descripcion" id="descripcion"></textarea>
+                </div>
+            </div>
+
+        </div>
+        <div class="w-100 mt-4 d-flex justify-content-end">
+            
+            <button pButton label="Volver" class="p-button-danger mx-3" [routerLink]="['/admin/stock']" icon="pi pi-angle-double-left"></button>
+            <button pButton type="submit" [disabled]="formRegister.invalid" [loading]="ladingRegister" label="Guardar" icon="pi pi-save"></button>
+        </div>
+    </form>
+    </p-card>
+    <p-toast></p-toast>
+</div>

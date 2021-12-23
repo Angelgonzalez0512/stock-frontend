@@ -1,0 +1,59 @@
+<div class="container">
+    <p-card>
+        <form action="" >
+        <div class="row">
+            <h1 class="fs-4 text-muted">Detalle transaccion</h1>
+            <hr>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="" class="w-100 fw-bold text-muted my-2">Producto</label>
+                  <p class="mt-2">{{transaction.producto?.nombre}}</p>  
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="w-100 fw-bold text-muted" for="codigo">Codigo</label>
+                    <p class="mt-2">{{transaction.codigo}}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="w-100 fw-bold text-muted" for="cantidad">Cantidad</label>
+                   <p class="mt-2">{{transaction.cantidad}}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="w-100 fw-bold text-muted" for="">Area</label>
+                    <p class="mt-2">{{transaction.area}}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="w-100 fw-bold text-muted" for="">Cedula</label>
+                   <p class="mt-2">{{transaction.cedula}}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="w-100 fw-bold text-muted" for="fecha">Fecha</label>
+                    <p class="mt-2">{{transaction.fecha}}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="w-100 fw-bold text-muted" for="descripcion">Descripcion</label>
+                    <p class="mt-2">{{transaction.descripcion}}</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="w-100 mt-4 d-flex justify-content-end">
+            <button pButton label="Volver" class="p-button-danger mx-3" [routerLink]="['/admin/stock']" icon="pi pi-angle-double-left"></button>
+       </div>
+    </form>
+    </p-card>
+    <p-toast></p-toast>
+</div>

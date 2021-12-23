@@ -1,0 +1,13 @@
+<ng-container>
+  <ng-container *ngIf="!loading">
+    <app-sider-bar [user]="auth"></app-sider-bar>
+    <section class="dashboard_admin_home_section">
+      <app-header [user]="auth"></app-header>
+      <div class="dashboard_admin_home_content">
+        <div class="p-3">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-container>

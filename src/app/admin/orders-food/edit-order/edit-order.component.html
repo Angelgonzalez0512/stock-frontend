@@ -1,0 +1,124 @@
+<p-card>
+    <ng-container *ngIf="!loadingdata">
+    <p-tabView>
+        <p-tabPanel header="Pedido" leftIcon="pi pi-calendar">
+            <div class="container">
+                <form action="" >
+                    <div class="row my-4 ">
+                        <div class="col-md-3 mt-2">
+                            <label for="fecha" class="form-label fw-bold">Fecha</label>
+                            <p class="mt-2">{{order.fecha}}</p>
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fw-bold">Area</label>
+                           <p class="mt-2">{{order.area}}</p>
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fw-bold">Cedula</label>
+                            <p class="mt-2">{{order.cedula}}</p>
+                        </div>
+
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fw-bold">Descripcion</label>
+                            <p class="mt-2">{{order.descripcion}}</p>
+                        </div>
+
+                    </div>
+                    <div class="w-100 d-flex justify-content-end align-items-center my-4">
+                        
+                        <input type="checkbox" [(ngModel)]="btransaction" name="transaction" id="transaction">
+                        <label for="transaction" class="mx-1">Hacer transacciones</label>
+                        <button pButton label="Finalizar pedido" class="p-button-danger mx-2"
+                            (click)="FinalizarPedido()" type="button" icon="pi pi-check"></button>
+                    </div>
+                </form>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Productos" leftIcon="pi pi-users">
+            <div class="container my-2">
+                <div class="row">
+                    <div class="col-md-10">
+                        <table class="table my-4">
+                            <thead class="bg-primary text-white p-3">
+                                <tr>
+                                    <th class="p-2">Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <td>Stock</td>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of order.detalles">
+                                    <td>{{item.producto?.nombre}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>{{item.producto?.precio}}</td>
+                                    <td>{{item.producto?.cantidad}}</td>
+                                    <td>
+                                        <ng-container *ngIf="item.producto && item.cantidad">
+                                            
+                                            <ng-container *ngIf="item.producto">
+                                            <ng-container *ngIf="!item.producto.cantidad"> 
+                                                <span 
+                                                class="p-tag p-tag-info w-75">No suficiente</span>
+                                            </ng-container>
+                                            <ng-container *ngIf="item.producto.cantidad"> 
+                                            <span *ngIf="item.cantidad>item.producto.cantidad"
+                                                class="p-tag p-tag-info w-75">No suficiente</span>
+                                            <span *ngIf="item.producto.cantidad>=item.cantidad"
+                                                class="p-tag p-tag-success w-75">Suficiente</span>
+                                            </ng-container>
+                                            </ng-container>
+                                        </ng-container>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Otros productos" leftIcon="pi pi-tags">
+            <div class="container my-2">
+                <div class="row">
+                    <div class="col-md-8">
+                        <table class="table my-4">
+                            <thead class="bg-primary text-white p-4">
+                                <tr>
+                                    <th class="p-2">Producto</th>
+                                    <th>Cantidad</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of order.otrosproductos">
+                                    <td>{{item.producto}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td></td>
+                                </tr>
+                                <ng-container *ngIf="order.otrosproductos">
+                                <tr *ngIf="!order.otrosproductos.length">
+                                    <td colspan="3" class="w-100 d-flex justify-content-center text-muted">No se
+                                        ingresaron otros productos</td>
+                                </tr>
+                            </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</ng-container>
+<ng-container *ngIf="loadingdata">
+    <div class="container vh-75 d-flex justify-content-center align-items-center" >
+
+    <p-progressSpinner styleClass="custom-spinner" strokeWidth="6" [style]="{width: '60px', height: '60px'}"></p-progressSpinner>
+    </div>
+
+</ng-container>
+</p-card>
+
+<p-toast></p-toast>

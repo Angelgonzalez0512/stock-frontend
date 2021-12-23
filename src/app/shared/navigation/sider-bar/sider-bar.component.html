@@ -1,0 +1,101 @@
+<div class="dashboard_admin_sidebar  bg-app">
+    <div class="w-100 text-center mt-4">
+  
+        <p-avatar
+        label={{initials}}
+        styleClass="p-avatar-circle"
+        size="large"
+        [style]="{'background-color':'#47C0BF', 'color': '#ffffff'}"
+        shape="circle"
+      ></p-avatar>
+      <div class="w-100 text-white mt-3 sidebar_usuario_nombres">{{user?.nombres + ' ' +user?.apellidos}}</div>
+      
+    </div>
+      <hr class="mt-4"/>
+    <ul class="dashboard_admin_nav_links">
+    
+      <li>
+        <a class="dashboard_admin_active" [routerLink]="['/admin']" [routerLinkActive]="'bg-custom-green'" [routerLinkActiveOptions]="{exact:true}">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-home"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/products']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-tags"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Productos</span>
+        </a>
+  
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/categories']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx" >
+            <i class="pi pi-tags"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Categorias</span>
+        </a>
+  
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/users']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-users"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Usuarios</span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/stock']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-table"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Stock</span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/orderfoods']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-envelope"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Pedido alimentos</span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/activities']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-calendar-plus"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Actividades</span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/units']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-compass"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Unidades</span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/reports']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-file-pdf"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Reportes</span>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" [routerLink]="['/admin/statistics']" [routerLinkActive]="'bg-custom-green'">
+          <i class="dashboard_admin_bx">
+            <i class="pi pi-chart-bar"></i>
+          </i>
+          <span class="dashboard_admin_links_name">Estadisticas</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>

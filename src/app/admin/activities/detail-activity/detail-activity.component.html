@@ -1,0 +1,135 @@
+<p-card>
+    <p-tabView>
+        <p-tabPanel header="Actividad" leftIcon="pi pi-calendar">
+            <div class="container">
+                <form action="">
+                    <div class="row my-4 ">
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fs-6 fw-bold">Actividad</label>
+                            <p class="pt-2">{{activity.nombre}}</p>
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fs-6 fw-bold">Area</label>
+                            <p class="pt-2">{{activity.area}}</p>
+
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fs-6 fw-bold">Cedula</label>
+                            <p class="pt-2">{{activity.cedula}}</p>
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label fs-6 fw-bold">Fecha de inicio</label>
+                            <p class="pt-2">{{activity.fechainicio}}</p>
+                        </div>
+                        <div class="col-md-3 mt-2">
+
+                            <label for="" class="form-label fs-6 fw-bold">Fecha fin</label>
+                            <p class="pt-2">{{activity.fechafin}}</p>
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for=""  class="form-label fs-6 fw-bold">Descripcion actividad</label>
+                            <p class="pt-2">{{activity.descripcion}}</p>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Colaboradores" leftIcon="pi pi-users">
+            <div class="container my-2">
+                
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="d-flex justify-content-end w-100">
+                            <button pButton icon="pi pi-file-excel" (click)="exportExcelUser()" class="mx-2 p-button-success mb-3"></button>
+                        </div>
+                        <table class="table my-4">
+                            <thead class="bg-primary text-white p-4">
+                                <tr>
+                                    <th class="p-2">Nombres</th>
+                                    <th>Cargo</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let colaborador of activity.colaboradores; let i=index"
+                                    [attr.data-index]="i">
+                                    <td class="p-2">{{colaborador?.nombre}}</td>
+                                    <td>{{colaborador?.cargo}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Productos" leftIcon="pi pi-tags">
+            <div class="container my-2">
+                
+                <br>
+               
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="d-flex justify-content-end w-100">
+                            <button pButton icon="pi pi-file-excel" (click)="exportExcelProducts()" class="mx-2 p-button-success mb-3"></button>
+                        </div>
+                        <table class="table my-4">
+                            <thead class="bg-primary text-white p-4">
+                                <tr>
+                                    <th class="p-2">Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of activity.transacciones">
+                                    <td>{{item.producto?.nombre}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>{{item.preciounidad}}</td>
+                                   </tr>
+                                   <tr>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td>S/. {{costoActividad}}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Usuario" leftIcon="pi pi-tags">
+            <div class="container my-2">
+                <br>
+                <div class="row">
+                    <div class="col-md-4"> <strong> Nombres</strong></div>
+                    <div class="col-md-8">: &nbsp;{{activity.usuario?.nombres}}</div>
+                    <div class="col-md-4"> <strong> Apellidos</strong></div>
+                    
+                    <div class="col-md-8">: &nbsp;{{activity.usuario?.apellidos}}</div>
+                    <div class="col-md-4"> <strong> Dni</strong></div>
+                    
+                    <div class="col-md-8">: &nbsp;{{activity.usuario?.dni}}</div>
+                    <div class="col-md-4"> <strong> Area</strong></div>
+                    
+                    <div class="col-md-8">: &nbsp;{{activity.usuario?.area}}</div>
+                    <div class="col-md-4"> <strong> Cedula</strong></div>
+                    
+                    <div class="col-md-8">: &nbsp;{{activity.usuario?.cedula}}</div>
+                    
+                </div>
+
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</p-card>
+
+<p-toast></p-toast>

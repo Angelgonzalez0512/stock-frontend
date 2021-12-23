@@ -1,0 +1,167 @@
+<p-card>
+    <p-tabView>
+        <p-tabPanel header="Actividad" leftIcon="pi pi-calendar">
+            <div class="container">
+                <form action="" (submit)="updateActivity(activity)">
+                    <div class="row my-4 ">
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label">Actividad</label>
+                            <input type="text" name="actividad" [(ngModel)]="activity.nombre" disabled="true" readonly
+                                class="form-control mt-2">
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label">Area</label>
+                            <ng-select name="area" [required]="true" (change)="selectedArea(areaselected)" [(ngModel)]="areaselected" class="w-100 mt-2"
+                                [notFoundText]="'No se encontraron areas'">
+                                <ng-option *ngFor="let area of areas" [value]="area._id">{{area.area}}</ng-option>
+                            </ng-select>
+
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label">Cedula</label>
+                            <ng-select name="cedula" [required]="true"  [(ngModel)]="activity.cedula" class="w-100 mt-2"
+                                [notFoundText]="'No se encontraron cedulas'">
+                                <ng-option *ngFor="let cedula of cedulas" [value]="cedula">{{cedula}}
+                                </ng-option>
+                            </ng-select>
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for="" class="form-label">Fecha de inicio</label>
+                            <input type="date" [(ngModel)]="activity.fechainicio" class="form-control mt-2" name="fechainicio">
+                        </div>
+                        <div class="col-md-3 mt-2">
+
+                            <label for="" class="form-label">Fecha fin</label>
+                            <input type="date" [(ngModel)]="activity.fechafin" class="form-control mt-2" name="fechasalida">
+                        </div>
+                        <div class="col-md-3 mt-2">
+                            <label for=""  class="form-label">Descripcion actividad</label>
+                            <textarea name="actividad" [(ngModel)]="activity.descripcion" class="form-control mt-2"
+                                id="actividad">{{activity.descripcion}}</textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="w-100 d-flex justify-content-end"> 
+                        <button pButton label="Guardar" type="submit" icon="pi pi save" ></button>
+                    </div>
+                </form>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Colaboradores" leftIcon="pi pi-users">
+            <div class="container my-2">
+                <form action="" #formColaborador="ngForm"
+                    (submit)="formColaborador.valid && registerColaborador(colaborador)">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="" class="form-label">
+                                Nombre
+                            </label>
+                            <input type="text" required name="nombre" [(ngModel)]="colaborador.nombre" id="nombre"
+                                class="form-control mt-2">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" class="form-label">
+                                Cargo
+                            </label>
+                            <input type="text" required name="cargo" [(ngModel)]="colaborador.cargo" id="cargo"
+                                class="form-control mt-2">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button pButton type="submit" [loading]="loadingregistercolaborador"
+                                [disabled]="formColaborador.invalid" icon="pi pi-plus"></button>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <table class="table my-4">
+                            <thead class="bg-primary text-white p-4">
+                                <tr>
+                                    <th class="p-2">Nombres</th>
+                                    <th>Cargo</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let colaborador of activity.colaboradores; let i=index"
+                                    [attr.data-index]="i">
+                                    <td class="p-2">{{colaborador?.nombre}}</td>
+                                    <td>{{colaborador?.cargo}}</td>
+                                    <td><button pButton class="p-button-rounded p-button-danger"
+                                            (click)="deleteColaborador(i)" icon="pi pi-trash"></button></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Productos" leftIcon="pi pi-tags">
+            <div class="container my-2">
+                <form action="" #formProduct="ngForm" (submit)="formProduct.valid && registerProducto()">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">Producto</label>
+                                <ng-select name="producto" (change)="selectedProduct()"
+                                    [(ngModel)]="transaction.productoid" [required]="true" class="mt-2 w-100"
+                                    [notFoundText]="'No se encontraron productos'" #producto
+                                    (search)="searchProduct($event.term)">
+                                    <ng-option *ngFor="let product of products" [value]="product._id">{{product.nombre}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" class="form-label">
+                                Cantidad
+                            </label>
+                            <input type="text" name="cargo" [(ngModel)]="transaction.cantidad" [required]="true"
+                                id="cargo" class="form-control mt-2">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button pButton type="submit" [disabled]="formProduct.invalid" icon="pi pi-plus"></button>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <table class="table my-4">
+                            <thead class="bg-primary text-white p-4">
+                                <tr>
+                                    <th class="p-2">Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of activity.transacciones">
+                                    <td>{{item.producto?.nombre}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>S/. {{item.preciounidad}}</td>
+                                    <td><button pButton class="p-button-rounded p-button-danger" (click)="deleteProducto(item._id)" icon="pi pi-trash"></button></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td>S/. {{costoActividad}}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</p-card>
+
+<p-toast></p-toast>

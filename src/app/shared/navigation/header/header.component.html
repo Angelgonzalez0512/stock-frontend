@@ -1,0 +1,23 @@
+<nav class="bg-light border-shadow-4  d-flex justify-content-end">
+  <div class="input-group w-50 mx-5">
+    <div class="border-0 w-100">
+      <input class="search__input" type="text"   placeholder="Buscar">
+    </div>
+  </div>
+  
+    <div class="container_profile_avatar">
+
+      <p-avatar  label="{{initials}}"  styleClass="cursor-pointer mx-2" size="large"
+      [style]="{'background-color':'#47C0BF', 'color': '#ffffff'}" shape="circle"></p-avatar>
+    
+        <div class="submenu">
+            <ul>
+              <li><i class="pi pi-user"></i>Perfil</li>
+              <li (click)="exitapp()"><i class="pi pi-power-off"></i>Salir</li>
+            </ul>
+        </div>
+    </div>
+
+   
+  
+</nav>

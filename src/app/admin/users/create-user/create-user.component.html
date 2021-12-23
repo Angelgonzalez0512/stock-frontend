@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p-card>
+            <form action="" validate name="formregister" (submit)="registrar(user)" #formRegister="ngForm">
+            <div class="w-100">
+                <h3 class="text-muted">Nuevo usuario</h3>
+            </div>
+            <hr class="mb-4"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group">
+                            Nombres
+                        </label>
+                        <input type="text" name="nombres" required [(ngModel)]="user.nombres" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group">
+                            Apellidos
+                        </label>
+                        <input type="text" name="apellidos" required [(ngModel)]="user.apellidos" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group">
+                            Dni
+                        </label>
+                        <input type="text" class="form-control" required [(ngModel)]="user.dni" name="dni">
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group">
+                            Correo
+                        </label>
+                        <input type="text" class="form-control" required [(ngModel)]="user.correo" name="correo">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="password" class="col-md-2 control-label-form-group">
+                            Contraseña
+                        </label>
+                        <input type="password" class="form-control" required name="password" [(ngModel)]="user.password">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group">
+                            Rol
+                        </label>
+                        <ng-select [(ngModel)]="user.rol" name="rol" [notFoundText]="'Nose encontraron roles'"  class="w-100">
+                            <ng-option *ngFor="let rol of roles" [value]="rol.name">{{rol.name}}</ng-option>
+                         </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group">
+                            Area
+                        </label>
+                        <ng-select [(ngModel)]="areaselected" (change)="selectedArea(areaselected)" name="area" [notFoundText]="'No se encontraron areas'" class="w-100">
+                            <ng-option *ngFor="let area of areas"  [value]="area._id">{{area.area}}</ng-option>
+                         </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="label-form-group">
+                            Cedula
+                        </label>
+                        <ng-select [(ngModel)]="user.cedula" name="cedula" [notFoundText]="'Nose encontraron cedulas'"  class="w-100">
+                            <ng-option *ngFor="let cedula of cedulas"[value]="cedula">{{cedula}}</ng-option>
+                         </ng-select>
+                      </div>
+                </div>
+            </div>
+            <div class="w-100 d-flex justify-content-end mt-4">
+                <button pButton type="submit" [disabled]="formRegister.invalid" [loading]="loadinregister" class="btn btn-primary" icon="pi pi-save" label="Crear usuario"></button>
+            </div>
+        </form>
+        </p-card >
+    </div>
+    <div class="col-md-2"></div>
+    <p-toast></p-toast>
+</div>
